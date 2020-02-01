@@ -1,24 +1,5 @@
-# quiz
+# Quiz
 
-## Project setup
-```
-npm install
-```
+Quiz é um projeto em vue-cli feito para estudar as propriedades do Vue, baseados no [curso de vuejs](https://www.udemy.com/course/vuejs-2-the-complete-guide/) do Maximilian Schwarzmüller na Udemy.  
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+O curso é feito em vue-cli, utilizando-se de sass para estilização.
