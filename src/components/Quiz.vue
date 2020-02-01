@@ -10,20 +10,20 @@
         <div class="life-bar"></div>
       </div>
       <div class="start-game">
-        <span>start new game</span>
+        <div>start new game</div>
       </div>
       <div class="controls">
         <div class="attact">
-          <span>Attack</span>
+          Attack
         </div>
         <div class="special-attact">
-          <span>Special attack</span>
+          Special attack
         </div>
         <div class="heal">
-          <span>Heal</span>
+          Heal
         </div>
         <div class="give-up">
-          <span>Give up</span>
+          Give up
         </div>
       </div>
       <div class="history">

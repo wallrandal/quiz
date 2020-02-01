@@ -1,5 +1,13 @@
 @import variables
 
+@media only screen and (max-width: 600px) 
+    #exercise 
+        width: 100%
+        .body
+            .controls
+                display: block !important 
+    
+
 =myButton($color, $hover) 
     &:hover
         background-color: $hover
@@ -11,65 +19,60 @@
     cursor: pointer
     color: $color-neutral-white
     font-weight: $font-weight-bold
+    margin-top: $font-size-heading-xl 
 
-
-.header
-    display: inline-flex
-    justify-content: space-between
-    height: $height
-    vertical-align: middle
-    font-size: $font-size-heading-md
-    align-items: center
+#exercise
     width: 70%
-    .fighter
-        cursor: pointer
-        width: 40%
-        padding: $font-size-rem-base
-        font-weight: $font-weight-bold
-        color: $color-grey-4
-
-.body
-    .life-bars 
+    margin: 0 auto
+    .header
+        width: 100%
         display: inline-flex
+        //flex-wrap: wrap
         justify-content: space-between
-        width: 70%
-        height: $height-sm
-        .life-bar
-            // background: linear-gradient(90deg, $color-green-3 50%, $color-grey-2, 50%)
-            background: linear-gradient(90deg, $color-green-2 100%, $color-neutral-ultra-light 0%)
-            // background: linear-gradient(90deg, $color-green-3 50%, $color-grey-2, 50%);
-            width: 40%
-            border: $border-small solid $color-grey-3
-            border-radius: $border-radius-large
-
-    .start-game
-        height: $height-md
-        span
-            &:hover
-                background-color: $color-yellow-2
-            font-size: $font-size-text
-            padding: $font-size-rem-base
-            border-radius: $border-radius-medium
-            box-shadow: $box-shadow-m
-            background-color: $color-yellow-3
+        height: $height
+        vertical-align: middle
+        font-size: $font-size-heading-md
+        align-items: center
+        .fighter
             cursor: pointer
-            color: $color-neutral-white
+            width: 40%
+            padding: $font-size-rem-base
             font-weight: $font-weight-bold
+            color: $color-grey-4
 
-    .controls
-        display: inline-flex
-        justify-content: space-between
-        width: 70%
-        height: $height-sm
-        .attact
-            span
+    .body
+        .life-bars
+            width: 100%
+            display: inline-flex
+            justify-content: space-between
+            height: $height-sm
+            .life-bar
+                // background: linear-gradient(90deg, $color-green-3 50%, $color-grey-2, 50%)
+                background: linear-gradient(90deg, $color-green-2 100%, $color-neutral-ultra-light 0%)
+                // background: linear-gradient(90deg, $color-green-3 50%, $color-grey-2, 50%);
+                width: 40%
+                border: $border-small solid $color-grey-3
+                border-radius: $border-radius-large
+
+        .start-game
+            display: flex
+            justify-content: center
+            width: 100%
+            div
+                +myButton($color-yellow-3, $color-yellow-2)
+
+        .controls        
+            width: 100%
+            display: flex
+            justify-content: space-between
+            .attact
                 +myButton($color-red-3, $color-red-2)
-        .special-attact
-            span
+            .special-attact
                 +myButton($color-green-3, $color-green-2)
-        .heal
-            span
+            .heal
                 +myButton($color-blue-3, $color-blue-2)
-        .give-up
-            span
+            .give-up
                 +myButton($color-grey-3, $color-grey-2)
+
+        .history
+            margin-top: $font-size-heading-xl 
