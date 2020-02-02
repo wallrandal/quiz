@@ -47,12 +47,18 @@
             justify-content: space-between
             height: $height-sm
             .life-bar
-                // background: linear-gradient(90deg, $color-green-3 50%, $color-grey-2, 50%)
-                background: linear-gradient(90deg, $color-green-2 100%, $color-neutral-ultra-light 0%)
-                // background: linear-gradient(90deg, $color-green-3 50%, $color-grey-2, 50%);
+                background-color: $color-grey-1
                 width: 40%
-                border: $border-small solid $color-grey-3
                 border-radius: $border-radius-large
+                border-collapse: collapse
+                .health 
+                    color: $color-neutral-white
+                    border: $border-medium solid pink
+                    border-radius: inherit
+                    width: 90%
+                    background-color: $color-green-3
+                    border: 1px solid pink
+                    height: 100%
 
         .start-game
             display: flex
@@ -75,4 +81,9 @@
                 +myButton($color-grey-3, $color-grey-2)
 
         .history
-            margin-top: $font-size-heading-xl 
+            margin-top: $font-size-heading-xl
+            .event
+                .player-turn 
+                    background-color: $color-blue-1
+                .monster-turn 
+                    background-color: $color-red-1
