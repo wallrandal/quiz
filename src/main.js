@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Servers from './Servers.vue'
 
-Vue.config.productionTip = false
+Vue.component('servers', Servers)
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  el: '#app',
+  render: h => h(App)
+})
