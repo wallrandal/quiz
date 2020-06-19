@@ -1,29 +1,26 @@
 <template>
     <div class="container">
         <div class="row">
-            <app-header></app-header>
-        </div>
-        <hr>
-        <servers></servers>
-        <hr>
-        <div class="row">
-            <app-footer></app-footer>
+            <div class="col-xs-12">
+                <app-user></app-user>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import Header from './Header.vue';
-import Footer from './Footer.vue';
+    import User from './components/User.vue';
 
-export default {
-    components: {
-        'app-header': Header,
-        'app-footer': Footer,
-    },
-}
+    export default {
+        components: {
+            appUser: User
+        }
+    }
 </script>
 
 <style>
-
+    div.component {
+        border: 1px solid black;
+        padding: 30px;
+    }
 </style>
