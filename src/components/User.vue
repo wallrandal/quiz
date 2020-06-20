@@ -2,6 +2,7 @@
     <div class="component">
         <h1>The User Component</h1>
         <p>I'm an awesome User!</p>
+        <p>Age in parent component: {{age}}</p>
         <button @click="changeName">Change My Name</button>
         <hr>
         <div class="row">
@@ -9,10 +10,11 @@
                 <app-user-detail 
                     :name="name" 
                     @nameWasReset="name = $event"
+                    :userAge="age"
                     :resetMyName="resetMyName"></app-user-detail>
             </div>
             <div class="col-xs-12 col-sm-6">
-                <app-user-edit></app-user-edit>
+                <app-user-edit @changeAge="age = $event" :userAge="age"></app-user-edit>
             </div>
         </div>
     </div>
@@ -26,8 +28,7 @@
         data: function () {
             return {
                 name: 'Wall',
-                required: true,
-                default: 'Wallace',
+                age: 26,
             }
         },
         methods: {
