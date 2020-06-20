@@ -23,6 +23,8 @@
         data: function () {
             return {
                 name: 'Wall',
+                required: true,
+                default: 'Wallace',
             }
         },
         methods: {
