@@ -20,7 +20,7 @@
             editAge() {
                 this.newAge++;
                 this.$emit('changeAge', this.newAge);
-                eventBus.$emit('changeAge', this.newAge);
+                eventBus.changeAge(this.newAge);
             }
         },
         created () {
