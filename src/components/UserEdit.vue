@@ -8,6 +8,8 @@
 </template>
 
 <script>
+    import {eventBus} from '../main';
+
     export default {
         data () {
             return {
@@ -18,6 +20,7 @@
             editAge() {
                 this.newAge++;
                 this.$emit('changeAge', this.newAge);
+                eventBus.$emit('changeAge', this.newAge);
             }
         },
         created () {
