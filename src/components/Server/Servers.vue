@@ -12,6 +12,8 @@
 </template>
 
 <script>
+    import {eventBus} from '../..//main';
+
     export default {
         data () {
             return {
@@ -26,7 +28,7 @@
         },
         methods: {
             selectServer(server = {}) {
-                this.$emit('changeServer', server);
+                eventBus.changeServer(server);
             },
         },
     }

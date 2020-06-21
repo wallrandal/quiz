@@ -5,7 +5,7 @@
         Parent server: {{server}}
         <hr>
         <div class="row">
-            <servers v-on:changeServer="server = $event"></servers>
+            <servers></servers>
             <app-server-details :server="server" ></app-server-details>
         </div>
         <hr>
@@ -18,6 +18,7 @@
     import Footer from './components/Shared/Footer.vue';
     import Servers from './components/Server/Servers.vue';
     import ServerDetails from './components/Server/ServerDetails.vue';
+    import {eventBus} from './main';
 
     export default {
         data () {
@@ -30,6 +31,11 @@
             Servers,
             'app-server-details': ServerDetails,
             'app-footer': Footer
+        },
+        created () {
+            eventBus.$on('changeServer', (server) => {
+                this.server = server;
+            });
         },
     }
 </script>
