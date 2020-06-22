@@ -1,18 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Servers from './Servers.vue'
-
-Vue.component('servers', Servers)
 
 export const eventBus = new Vue({
   methods: {
-    changeAge (age) {
-      this.$emit('editAge', age)
-    }
-  }
+    changeServer (server) {
+      this.$emit('changeServer', server);
+    },
+    switchStatus () {
+      this.$emit('siwtchStatus');
+    },
+  },
 });
 
-//parent 
 new Vue({
   el: '#app',
   render: h => h(App)
