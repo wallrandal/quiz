@@ -5,7 +5,10 @@ export const eventBus = new Vue({
   methods: {
     changeServer (server) {
       this.$emit('changeServer', server);
-    }
+    },
+    switchStatus () {
+      this.$emit('siwtchStatus');
+    },
   },
 });
 

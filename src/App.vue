@@ -2,8 +2,6 @@
     <div class="container">
         <app-header></app-header>
         <hr>
-        Parent server: {{server}}
-        <hr>
         <div class="row">
             <servers></servers>
             <app-server-details :server="server" ></app-server-details>
@@ -35,6 +33,10 @@
         created () {
             eventBus.$on('changeServer', (server) => {
                 this.server = server;
+            });
+            
+            eventBus.$on('siwtchStatus', () => {
+                this.server.status = 'normal1';
             });
         },
     }
