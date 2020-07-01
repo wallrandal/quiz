@@ -96,22 +96,28 @@
                     <label for="priority">Priority</label>
                     <select
                             id="priority"
+                            v-model="selectedPriority"
                             class="form-control">
-                        <option></option>
+                        <option v-for="(priority, index) in priorities" :key="index" :selected="priority == 'medium'"> {{priority}} </option>
                     </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
+                    <app-switch v-model="dataSwitch"></app-switch>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <button
+                    <button @click.prevent="submitted"
                             class="btn btn-primary">Submit!
                     </button>
                 </div>
             </div>
         </form>
         <hr>
-        <div class="row">
+        <div v-if="isSubmitted" class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -128,7 +134,7 @@
                         </ul>
                         <p>Gender: {{gender}} </p>
                         <p>Priority:</p>
-                        <p>Switched:</p>
+                        <p>Switched: {{dataSwitch}} </p>
                     </div>
                 </div>
             </div>
@@ -137,6 +143,8 @@
 </template>
 
 <script>
+    import Switch from './components/Switch';
+
     export default {
         data () {
             return {
@@ -148,8 +156,24 @@
                 message: 'a new text',
                 sendMail: [],
                 gender: '',
+                priorities: [
+                    'high',
+                    'medium',
+                    'low',
+                ],
+                selectedPriority: 'low',
+                dataSwitch: true,
+                isSubmitted: false,
             };
         },
+        methods: {
+            submitted () {
+                this.isSubmitted = true;
+            },
+        },
+        components: {
+            AppSwitch: Switch,
+        }
     }
 </script>
 
