@@ -2,72 +2,35 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Signup Form</h4>
-                    </div>
-                    <form action="">
-                        <div class="panel-body">
-                            <label for="first_name">First Name</label>
-                            <input v-model="firstName" class="form-control" type="text" name="first_name" id="first_name">
-                            
-                            <label for="last_name">Last Name</label>
-                            <input v-model="lastName" class="form-control" type="text" name="last_name" id="last_name">
-                            
-                            <label for="email">E-mail</label>
-                            <input v-model="email" class="form-control" type="email" name="email" id="email">
-                            
-                            <label for="password">Password</label>
-                            <input v-model="password" class="form-control" type="password" name="password" id="password">
-                            
-                            <label for="switch">Store data?</label>
-                            <app-switch id="switch" v-model="switched"></app-switch>
-
-                            <button @click.prevent="submitted = true" type="submit">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div v-show="submitted" class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Your Data</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Full Name: {{fullName}} </p>
-                        <p>Mail: {{email}} </p>
-                        <p>Password: </p>
-                        <p>Store in Database?: {{switched}} </p>
-                    </div>
-                </div>
+                <h1>Filters & Mixins</h1>
+                <!-- Exercise 1) -->
+                <!-- Build a local Filter which reverses the Text it is applied on -->
+                <p> text base: {{text}} </p>
+                <p> reversed: {{text | reverse }} </p>
+                <!-- Exercise 2 -->
+                <!-- Build a global Filter which counts the length of a word and it appends it -->
+                <!-- Like this: "Test" => Gets Filtered to => "Test (4)" -->
+                <p> length count: {{text | textLength }} </p>
+                <!-- Exercise 3 -->
+                <!-- Do the same as in Exercises 1 & 2, now with Computed Properties -->
+                <p> computed reversed: {{ reversed }} </p>
+                <p> computed length count: {{ withCounted }} </p>
+                <!-- Exercise 4 -->
+                <!-- Share the Computed Property rebuilding Exercise 2 via a Mixin -->
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import Switch from './components/Switch';
+    import { stringManipulationMixin } from "./stringManipulationMixin";
     export default {
-        data () {
-            return {
-                firstName: '',
-                lastName: '',
-                email: '',
-                password: '',
-                switched: true,
-                submitted: false,
-            };
-        },
-        components: {
-            AppSwitch: Switch,
-        },
-        computed: {
-            fullName() {
-                return `${this.firstName} ${this.lastName}`;
+        filters: {
+            reverse (value) {
+                return value.split("").reverse().join("");
             }
         },
+        mixins: [ stringManipulationMixin ],
     }
 </script>
 
