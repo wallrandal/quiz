@@ -7,6 +7,7 @@
                 <app-another-result></app-another-result>
                 <hr>
                 <app-counter ></app-counter>
+                <app-another-counter ></app-another-counter>
             </div>
         </div>
     </div>
@@ -17,13 +18,14 @@
     import AnotherResult from './components/AnotherResult';
     import Result from './components/Result';
     import Counter from './components/Counter';
+    import AnotherCounter from './components/AnotherCounter';
 
     export default {
         components: {
             AppResult: Result,
             AppAnotherResult: AnotherResult,
             AppCounter: Counter,
-        },
-        
+            AppAnotherCounter: AnotherCounter,
+        },        
     }
 </script>
