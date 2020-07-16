@@ -10,9 +10,9 @@
 
     export default {
         computed: {
-            ...mapGetters([
-            'doubleCounter',
-            'stringCounter',
+            ...mapGetters('counter',[
+                'doubleCounter',
+                'stringCounter',
             ]),
         }
     }
