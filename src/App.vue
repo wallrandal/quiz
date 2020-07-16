@@ -7,6 +7,12 @@
                 <app-another-result></app-another-result>
                 <hr>
                 <app-counter ></app-counter>
+                <app-another-counter ></app-another-counter>
+                <hr>
+                <input type="text" :value="value" @input="updateValue" class="form-control">
+                <p>
+                    {{value}}
+                </p>
             </div>
         </div>
     </div>
@@ -14,16 +20,33 @@
 
 
 <script>
+/* eslint no-console: ["error", { allow: ["warn", "log"] }] */
     import AnotherResult from './components/AnotherResult';
     import Result from './components/Result';
     import Counter from './components/Counter';
-
+    import AnotherCounter from './components/AnotherCounter';
+    // import { mapState } from "vuex";
     export default {
+        computed: {
+            value: {
+                get () {
+                    return this.$store.state.value
+                },
+                set (value) {
+                    this.$store.commit('updateValue', value)
+                }
+            }
+        },
+        methods: {
+            updateValue(event) {
+                this.$store.dispatch('updateValue', event.target.value);
+            }
+        },
         components: {
             AppResult: Result,
             AppAnotherResult: AnotherResult,
             AppCounter: Counter,
-        },
-        
+            AppAnotherCounter: AnotherCounter,
+        },        
     }
 </script>
