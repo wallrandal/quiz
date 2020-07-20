@@ -2,8 +2,8 @@
     <div class="col-sm-4 m-2">
         <div class="card">
             <div class="card-header bg-success text-white">
-                Nome
-                <small>preço</small>
+                {{stock.name}}
+                <small>{{stock.price}}</small>
             </div>
             <div class="card-body">
                 <p class="card-text">
@@ -39,7 +39,7 @@ export default {
                 stockPrice: this.stock.price,
                 stockQuantity: this.quantity,
             };
-            console.log(order);
+            this.$store.dispatch('buyStock', order);
             this.quantity  = 0;
         },
     }
