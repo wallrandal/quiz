@@ -7,16 +7,16 @@
 </template> 
 <script>
 import Stock from "./Stock";
+import {mapGetters} from "vuex";
 /* eslint no-console: ["error", { allow: ["log"] }] */
 export default {
-    components: {
-        appStock: Stock,
-    },
     computed: {
-        stocks () { 
-            console.log(this.$store.getters.stockPortfolio);
-            return this.$store.getters.stockPortfolio;
-        }
+        ...mapGetters({
+            stocks: 'stockPortfolio',
+        })
+    },
+    components: {
+        appStock: Stock
     }
 }
 </script> 

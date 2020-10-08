@@ -1,7 +1,7 @@
 <template>
     <div class="col-sm-4 m-2">
         <div class="card">
-            <div class="card-header bg-success text-white">
+            <div class="card-header bg-info text-white">
                 {{stock.name}}
                 <small>Preço {{stock.price}} | Quantidade {{stock.quantity}}</small>
             </div>
@@ -34,16 +34,17 @@ export default {
         };
     },
     methods: {
-        ...mapActions([
-            'sellStock'
-        ]),
+        ...mapActions({
+            placeSellOrder: 'sellStock',
+        }),
         sellStock() {
             const order = {
                 stockId: this.stock.id,
                 stockPrice: this.stock.price,
                 quantity: this.quantity,
             };
-            this.sellStock(order);
+            this.placeSellOrder(order);
+            this.quantity = 0;
         }
     }
 }
