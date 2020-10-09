@@ -8,6 +8,10 @@ import store from "./store/store";
 Vue.use(Vuex);
 Vue.use(VueRouter);
 
+Vue.filter('currency', value => {
+  return 'R$' + value.toLocaleString();
+});
+
 const router = new VueRouter({
   routes // short for `routes: routes`
 })

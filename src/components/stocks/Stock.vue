@@ -17,7 +17,7 @@
                 </p>
                 <a href="#" 
                    @click="buyStock" 
-                   :class="{'disabled': (this.quantity !== Number.isInteger(quantity) & quantity < 1 ) }" 
+                   :class="{'disabled': (this.quantity !== Number.isInteger(quantity) & quantity < 1 || insufficientFunds ) }" 
                    class="btn btn-success">Comprar</a>
             </div>
         </div>
@@ -31,6 +31,14 @@ export default {
         return {
             quantity: 0,
         };
+    },
+    computed: {
+        funds() {
+            return this.$store.getters.funds;
+        },
+        insufficientFunds() {
+            return this.quantity * this.stock.price > this.funds;
+        }
     },
     methods: {
         buyStock() {
