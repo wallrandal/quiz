@@ -36,7 +36,7 @@
                     </div>
                 </li>
             </ul>
-            <strong class="navbar-text navbar-right">Funds: {{ funds | currency }}</strong>
+            <strong class="navbar-text navbar-right">Patrimônio disponível: {{ funds | currency }}</strong>
         </div>
         </nav>
 </template> 
