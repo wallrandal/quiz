@@ -24,27 +24,45 @@
                                 exact> Portfolio </router-link>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-primary">Finalizar dia</button>
+                    <button @click="endDay" class="btn btn-primary">Finalizar dia</button>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown open">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Salvar e carregar
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Salvar</a>
+                        <a @click="saveData" class="dropdown-item" href="#">Salvar</a>
                         <a class="dropdown-item" href="#">Carregar</a>
                     </div>
                 </li>
             </ul>
-            <strong class="navbar-text navbar-right">Funds: {{ funds | currency }}</strong>
+            <strong class="navbar-text navbar-right">Patrimônio disponível: {{ funds | currency }}</strong>
         </div>
         </nav>
 </template> 
 <script>
+/* eslint no-console: ["error", { allow: ["log"] }] */
+import {mapActions} from 'vuex';
 export default {
     computed: {
         funds() {
             return this.$store.getters.funds;
+        }
+    },
+    methods: {
+        ...mapActions([
+            'randomizeStocks'
+        ]),
+        endDay() {
+            this.randomizeStocks()
+        },
+        saveData() {
+            const data = {
+                funds: this.$store.getters.funds,
+                stockPortfolio: this.$store.getters.stockPortfolio,
+                stocks: this.$store.getters.funds,
+            }
+            this.$http.put('data.json', data);
         }
     }
 }

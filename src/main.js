@@ -4,12 +4,16 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import { routes } from "./routes";
 import store from "./store/store";
+import VueResource from 'vue-resource';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
+Vue.use(VueResource);
+
+Vue.http.options.root = 'https://quiz-3c2c7.firebaseio.com/';
 
 Vue.filter('currency', value => {
-  return 'R$' + value.toLocaleString();
+  return value.toLocaleString('pt-BR',  { style: 'currency', currency: 'BRL' });
 });
 
 const router = new VueRouter({
