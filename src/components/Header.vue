@@ -24,7 +24,7 @@
                                 exact> Portfolio </router-link>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-primary">Finalizar dia</button>
+                    <button @click="endDay" class="btn btn-primary">Finalizar dia</button>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,10 +41,19 @@
         </nav>
 </template> 
 <script>
+import {mapActions} from 'vuex';
 export default {
     computed: {
         funds() {
             return this.$store.getters.funds;
+        }
+    },
+    methods: {
+        ...mapActions([
+            'randomizeStocks'
+        ]),
+        endDay() {
+            this.randomizeStocks()
         }
     }
 }

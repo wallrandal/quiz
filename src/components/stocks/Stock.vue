@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header bg-success text-white">
                 {{stock.name}}
-                <small>{{stock.price}}</small>
+                <small>{{stock.price | currency}}</small>
             </div>
             <div class="card-body">
                 <p class="card-text">
