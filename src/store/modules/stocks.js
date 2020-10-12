@@ -1,4 +1,4 @@
-import stocks from "../data/stocks";
+import stocks from "../../data/stocks";
 /* eslint no-console: ["error", { allow: ["log"] }] */
 const state = {
     stocks: [],
