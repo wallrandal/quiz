@@ -32,7 +32,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a @click="saveData" class="dropdown-item" href="#">Salvar</a>
-                        <a class="dropdown-item" href="#">Carregar</a>
+                        <a @click="loadData" class="dropdown-item" href="#">Carregar</a>
                     </div>
                 </li>
             </ul>
@@ -50,9 +50,10 @@ export default {
         }
     },
     methods: {
-        ...mapActions([
-            'randomizeStocks'
-        ]),
+        ...mapActions({
+            randomizeStocks: 'randomizeStocks',
+            fetchData: 'loadData',
+        }),
         endDay() {
             this.randomizeStocks()
         },
@@ -63,7 +64,11 @@ export default {
                 stocks: this.$store.getters.funds,
             }
             this.$http.put('data.json', data);
+        },
+        loadData() {
+            this.fetchData();
         }
+        
     }
 }
 </script>
