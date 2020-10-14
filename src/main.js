@@ -20,9 +20,10 @@ const router = new VueRouter({
   routes // short for `routes: routes`
 })
 
+
 new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
 })
