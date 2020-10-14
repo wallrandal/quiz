@@ -65,7 +65,10 @@ export default {
                 stocks: this.$store.getters.funds,
             }
             const url = 'https://quiz-3c2c7.firebaseio.com/data.json';
-            axios.put(url, data);
+            axios.put(url, data)
+            .catch(error => {
+                console.log(error)
+            });
         },
         loadData() {
             this.fetchData();
