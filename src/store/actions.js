@@ -1,11 +1,7 @@
 import axios from 'axios';
-import Vue from 'vue';
-// import axios from 'axios'; 
-
 /* eslint no-console: ["error", { allow: ["log"] }] */
 export const loadData = ({commit}) => {
-    const url = Vue.http.options.root + '/data.json';
-    axios.get(url)        
+    axios.get('/data.json')        
          .then(response => {
             if(response.data) {
                 const stocks = response.data.stocks;
