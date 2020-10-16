@@ -41,8 +41,8 @@
         </nav>
 </template> 
 <script>
+import axios from '../axios-custom';
 /* eslint no-console: ["error", { allow: ["log"] }] */
-import axios from 'axios';
 import {mapActions} from 'vuex';
 export default {
     computed: {
@@ -64,8 +64,7 @@ export default {
                 stockPortfolio: this.$store.getters.stockPortfolio,
                 stocks: this.$store.getters.funds,
             }
-            const url = 'https://quiz-3c2c7.firebaseio.com/data.json';
-            axios.put(url, data)
+            axios.put('/data.json', data)
             .catch(error => {
                 console.log(error)
             });
