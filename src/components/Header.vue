@@ -35,6 +35,12 @@
                         <a @click="loadData" class="dropdown-item" href="#">Carregar</a>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" 
+                                to="/login"
+                                exact-active-class="active"
+                                exact> Login </router-link>
+                </li>
             </ul>
             <strong class="navbar-text navbar-right">Patrimônio disponível: {{ funds | currency }}</strong>
         </div>
