@@ -16,8 +16,6 @@
 </template>
 <script>
 /* eslint no-console: ["error", { allow: ["log"] }] */
-import axios from 'axios';
-
 export default {
     data() {
         return {
@@ -30,13 +28,9 @@ export default {
             const data = {
                 email: this.email,
                 password: this.password,
-                returnSecureToken: true,
             };
 
-            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDydaRjIMeNI0M6JPhp3I8g51h90OzIZEs', data)
-            .catch(error => {
-                console.log(error)
-            });
+            this.$store.dispatch('signup', data);
         }
     }
 }

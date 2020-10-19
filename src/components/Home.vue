@@ -1,8 +1,6 @@
 <template>
     <div>
-        <h1>Trade or View your Portfolio</h1>
-        <h6>You may Save and Load your Data</h6>
-        <h6> Click on 'End Day' to begin a new day</h6>
+    <h1>Boas vindas, {{email}} </h1>
         <hr>
         <p>Patrimônio disponível: {{ funds | currency }}</p>
     </div>
@@ -10,9 +8,15 @@
 <script>
 export default {
     computed: {
+        email () {
+            return this.$store.getters.user.email;
+        },
         funds() {
             return this.$store.getters.funds;
         }
+    },
+    created() {
+        this.$store.dispatch('fetchUser');
     }
 }
 </script>
