@@ -21,7 +21,6 @@
 </template>
 <script>
 /* eslint no-console: ["error", { allow: ["log"] }] */
-import axios from 'axios';
 
 export default {
     data() {
@@ -37,12 +36,7 @@ export default {
                 password: this.password,
             };
 
-            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDydaRjIMeNI0M6JPhp3I8g51h90OzIZEs', data)
-            .catch(error => {
-                console.log(error)
-            }).then(res => {
-                console.log(res);
-            });
+            this.$store.dispatch('login', data);
         }
     }
 }
