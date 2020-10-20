@@ -25,8 +25,8 @@
 export default {
     data() {
         return {
-            email: '',
-            password: '',
+            email: 'wallace.moura@aiesec.net',
+            password: '123456',
         };
     },
     methods: {
