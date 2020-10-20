@@ -1,4 +1,4 @@
-import stocks from "../data/stocks";
+import stocks from "../../data/stocks";
 /* eslint no-console: ["error", { allow: ["log"] }] */
 const state = {
     stocks: [],
@@ -9,7 +9,9 @@ const mutations = {
         state.stocks = stocks;
     },
     'RND_STOCKS' (state) {
-        state.stocks = stocks;
+        state.stocks.forEach(stock => {
+            stock.price = Math.round(stock.price * (1 + Math.random() - 0.5));
+        });
     },
 };
 
