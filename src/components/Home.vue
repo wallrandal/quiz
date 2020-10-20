@@ -9,7 +9,7 @@
 export default {
     computed: {
         email () {
-            return this.$store.getters.user.email;
+            return !this.$store.getters.user ? false : this.$store.getters.user.email;
         },
         funds() {
             return this.$store.getters.funds;

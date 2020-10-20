@@ -36,27 +36,35 @@ const actions = {
         .catch(error => console.log(error));
     },
     login: ({commit}, authData) => {
-        console.log(authData);
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDydaRjIMeNI0M6JPhp3I8g51h90OzIZEs', {
             email: authData.email,
             password: authData.password,
+            returnSecureToken: true,
         })
         .then(res => {
             console.log(res);
             commit('authUser', {
                 token: res.data.idToken,
-                userId: res.data.userId,
+                localId: res.data.localId,
             });
         })
         .catch(error => console.log(error));
     },
-    storeUser ({commit}, userData) {
-        axios.post('/users.json', userData)
+    storeUser ({commit, state}, userData) {
+        if(!state.idToken) {
+            return;
+        }
+
+        axios.post('/users.json' + '?auth=' + state.idToken, userData)
              .then(res => console.log(res))
              .catch(error => console.log(error));
     },
-    fetchUser({commit}) {
-        axios.get('/users.json')
+    fetchUser({commit, state}) {
+        if(!state.idToken) {
+            return;
+        }
+
+        axios.get('/users.json'+ '?auth=' + state.idToken)
              .then(res => {
                  console.log(res);
                  const data = res.data;
