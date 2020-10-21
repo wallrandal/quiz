@@ -17,6 +17,7 @@
                                 exact-active-class="active"
                                 exact> Ações </router-link>
                 </li>
+                
                 <li v-if="logged" class="nav-item" >
                     <router-link class="nav-link" 
                                 to="/portfolio"
