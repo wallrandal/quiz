@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["log"] }] */
 import Home from "./components/Home";
 // import Header from "./components/Header";
 const Portfolio = () => import(/* webpackChunkName: "group-portfolio" */ './components/portfolio/Portfolio')
@@ -9,10 +10,31 @@ const Login = () => import(/* webpackChunkName: "group-stock" */ './components/l
 
 import Signup from "./components/login/Signup";
 
+import auth from './store/modules/auth';
+
 export const routes = [
     { path: '/', component: Home },
-    { path: '/portfolio', component: Portfolio },
-    { path: '/stocks', component: Stocks },
-    { path: '/login', component: Login },
-    { path: '/signup', component: Signup },
+    { 
+        path: '/portfolio', 
+        component: Portfolio, 
+        beforeEnter(to, from, next) {
+            if(auth.state.user) {
+                next();
+            } else {
+                next('/login');
+            }
+        }
+    },
+    { 
+        path: '/stocks', 
+        component: Stocks 
+    },
+    { 
+        path: '/login', 
+        component: Login 
+    },
+    { 
+        path: '/signup', 
+        component: Signup 
+    },
 ];
