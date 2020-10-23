@@ -11,22 +11,23 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li v-if="logged" class="nav-item">
                     <router-link class="nav-link" 
                                 to="/stocks"
                                 exact-active-class="active"
                                 exact> Ações </router-link>
                 </li>
-                <li class="nav-item">
+                
+                <li v-if="logged" class="nav-item" >
                     <router-link class="nav-link" 
                                 to="/portfolio"
                                 exact-active-class="active"
                                 exact> Portfolio </router-link>
                 </li>
-                <li class="nav-item">
+                <li v-if="logged" class="nav-item">
                     <button @click="endDay" class="btn btn-primary">Finalizar dia</button>
                 </li>
-                <li class="nav-item dropdown open">
+                <li v-if="logged" class="nav-item dropdown open">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Salvar e carregar
                     </a>
@@ -35,7 +36,7 @@
                         <a @click="loadData" class="dropdown-item" href="#">Carregar</a>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li v-if="!logged" class="nav-item">
                     <router-link class="nav-link" 
                                 to="/login"
                                 exact-active-class="active"
@@ -54,6 +55,9 @@ export default {
     computed: {
         funds() {
             return this.$store.getters.funds;
+        },
+        logged() {
+            return this.$store.getters.isLogged;
         }
     },
     methods: {
