@@ -38,6 +38,9 @@ export default {
 
             this.$store.dispatch('login', data);
         }
+    },
+    created() {
+        // console.log(process.env.);
     }
 }
 </script>

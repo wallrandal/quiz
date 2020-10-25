@@ -20,7 +20,7 @@ const mutations = {
 
 const actions = {
     signup: ({commit, dispatch}, authData) => {
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDydaRjIMeNI0M6JPhp3I8g51h90OzIZEs', {
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.FIREBASE_KEY, {
             email: authData.email,
             password: authData.password,
             returnSecureToken: true,
