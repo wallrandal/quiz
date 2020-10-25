@@ -37,7 +37,7 @@ const actions = {
     },
     login: ({commit}, authData) => {
         console.log(authData);
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDydaRjIMeNI0M6JPhp3I8g51h90OzIZEs', {
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.FIREBASE_KEY, {
             email: authData.email,
             password: authData.password,
         })
