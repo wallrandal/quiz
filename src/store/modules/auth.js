@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+
+// import router from './../../routes.js';
+
 /* eslint no-console: ["error", { allow: ["log"] }] */
 /*eslint no-unused-vars: ["error", { "args": "none" }]*/
 const state = {
@@ -15,6 +18,10 @@ const mutations = {
     },
     storeUser(state, user) {
         state.user = user;
+    },
+    clearAuthData(state) {
+        state.idToken = null;
+        state.userId = null;
     }
 };
 
@@ -37,7 +44,9 @@ const actions = {
     },
     login: ({commit}, authData) => {
         console.log(authData);
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.FIREBASE_KEY, {
+        console.log(process.env.VUE_APP_NOT_SECRET_CODE);
+        const token = typeof(process.env.FIREBASE_KEY) != "undefined" ? process.env.FIREBASE_KEY : process.env.VUE_APP_FIREBASE_KEY
+        axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${token}`, {
             email: authData.email,
             password: authData.password,
         })
@@ -70,6 +79,9 @@ const actions = {
                  commit('storeUser', users[0]);
                 })
              .catch(error => console.log(error));
+    },
+    logout({commit}) {
+        commit('clearAuthData');
     }
 };
 
