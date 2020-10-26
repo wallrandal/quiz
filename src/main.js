@@ -2,7 +2,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import Vuex from 'vuex';
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router';
 import { routes } from "./routes";
 import store from "./store/store";
 import VueResource from 'vue-resource';

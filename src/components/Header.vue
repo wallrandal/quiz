@@ -42,6 +42,9 @@
                                 exact-active-class="active"
                                 exact> Login </router-link>
                 </li>
+                <li v-if="logged" class="nav-item">
+                    <a class="nav-link" @click="logout" > Logout </a>
+                </li>
             </ul>
             <strong class="navbar-text navbar-right">Patrimônio disponível: {{ funds | currency }}</strong>
         </div>
@@ -81,8 +84,10 @@ export default {
         },
         loadData() {
             this.fetchData();
-        }
-        
+        },
+        logout() {
+            this.$store.dispatch('logout');
+        },        
     }
 }
 </script>
