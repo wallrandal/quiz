@@ -26,6 +26,11 @@ const mutations = {
 };
 
 const actions = {
+    setLogoutTimer({dispatch}, expirationTime) {
+        setTimeout(() => {
+            dispatch('logout');
+        }, expirationTime * 1000)
+    },
     signup: ({commit, dispatch}, authData) => {
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.FIREBASE_KEY, {
             email: authData.email,
@@ -39,23 +44,23 @@ const actions = {
                 userId: res.data.userId,
             });
             dispatch('storeUser', authData);
+            dispatch('setLogoutTimer', res.data.expiresIn);
         })
         .catch(error => console.log(error));
     },
-    login: ({commit}, authData) => {
-        console.log(authData);
-        console.log(process.env.VUE_APP_NOT_SECRET_CODE);
+    login: ({commit, dispatch}, authData) => {
         const token = typeof(process.env.FIREBASE_KEY) != "undefined" ? process.env.FIREBASE_KEY : process.env.VUE_APP_FIREBASE_KEY
         axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${token}`, {
             email: authData.email,
             password: authData.password,
+            returnSecureToken: true,
         })
         .then(res => {
-            console.log(res);
             commit('authUser', {
                 token: res.data.idToken,
                 userId: res.data.userId,
             });
+            dispatch('setLogoutTimer', res.data.expiresIn);
         })
         .catch(error => console.log(error));
     },
@@ -67,7 +72,6 @@ const actions = {
     fetchUser({commit}) {
         axios.get('/users.json')
              .then(res => {
-                 console.log(res);
                  const data = res.data;
                  const users = [];
                  for(let key in data) {
