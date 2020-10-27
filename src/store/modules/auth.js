@@ -43,6 +43,13 @@ const actions = {
                 token: res.data.idToken,
                 userId: res.data.userId,
             });
+            
+            const now = new Date();
+            const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
+            localStorage.setItem('token', res.data.idToken);
+            localStorage.setItem('expirationDate', expirationDate);
+            localStorage.setItem('userId', res.data.localId);
+
             dispatch('storeUser', authData);
             dispatch('setLogoutTimer', res.data.expiresIn);
         })
@@ -60,9 +67,34 @@ const actions = {
                 token: res.data.idToken,
                 userId: res.data.userId,
             });
+            
+            const now = new Date();
+            const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
+            localStorage.setItem('token', res.data.idToken);
+            localStorage.setItem('expirationDate', expirationDate);
+            localStorage.setItem('userId', res.data.localId);
+
             dispatch('setLogoutTimer', res.data.expiresIn);
         })
         .catch(error => console.log(error));
+    },
+    tryAutoLogin({commit}) {
+        const token = localStorage.getItem('token');
+        if(!token) {
+            return;
+        }
+
+        const expirationDate = localStorage.getItem('expirationDate');
+
+        const now = new Date();
+        if(now >= expirationDate) {
+            return;
+        }
+        const userId = localStorage.getItem('userId');
+        commit('authUser', {
+            token: token,
+            userId: userId,
+        });
     },
     storeUser ({commit}, userData) {
         axios.post('/users.json', userData)
@@ -86,6 +118,9 @@ const actions = {
     },
     logout({commit}) {
         commit('clearAuthData');
+        localStorage.removeItem('expirationDate');
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
     }
 };
 

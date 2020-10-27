@@ -23,7 +23,8 @@
             AppHeader: Header,
         },
         created () {
-            this.$store.dispatch('initStocks') 
+            this.$store.dispatch('initStocks');
+            this.$store.dispatch('tryAutoLogin')
         }
 
     }
