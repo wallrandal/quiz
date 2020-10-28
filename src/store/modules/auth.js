@@ -8,16 +8,14 @@ import axios from 'axios';
 const state = {
     idToken: null,
     userId: null,
-    user: null,
+    email: null,
 };
 
 const mutations = {
     authUser(state, userData) {
         state.idToken = userData.token;
         state.userId = userData.userId;
-    },
-    storeUser(state, user) {
-        state.user = user;
+        state.email = userData.email;
     },
     clearAuthData(state) {
         state.idToken = null;
@@ -38,10 +36,10 @@ const actions = {
             returnSecureToken: true,
         })
         .then(res => {
-            console.log(res);
             commit('authUser', {
                 token: res.data.idToken,
                 userId: res.data.userId,
+                email: authData.email,
             });
             
             const now = new Date();
@@ -49,6 +47,7 @@ const actions = {
             localStorage.setItem('token', res.data.idToken);
             localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('userId', res.data.localId);
+            localStorage.setItem('email', authData.email);
 
             dispatch('storeUser', authData);
             dispatch('setLogoutTimer', res.data.expiresIn);
@@ -66,6 +65,7 @@ const actions = {
             commit('authUser', {
                 token: res.data.idToken,
                 userId: res.data.userId,
+                email: authData.email,
             });
             
             const now = new Date();
@@ -73,6 +73,7 @@ const actions = {
             localStorage.setItem('token', res.data.idToken);
             localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('userId', res.data.localId);
+            localStorage.setItem('email', authData.email);
 
             dispatch('setLogoutTimer', res.data.expiresIn);
         })
@@ -91,11 +92,14 @@ const actions = {
             return;
         }
         const userId = localStorage.getItem('userId');
+        const email = localStorage.getItem('email');
+
         commit('authUser', {
             token: token,
             userId: userId,
+            email: email,
         });
-    },
+    }, 
     storeUser ({commit}, userData) {
         axios.post('/users.json', userData)
              .then(res => console.log(res))
@@ -111,8 +115,6 @@ const actions = {
                      user.id = key
                      users.push(user)
                  }
-                 console.log(users)
-                 commit('storeUser', users[0]);
                 })
              .catch(error => console.log(error));
     },
@@ -121,12 +123,16 @@ const actions = {
         localStorage.removeItem('expirationDate');
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
+        localStorage.removeItem('email');
     }
 };
 
 const getters = {
-    user (state) {
-        return state.user;
+    email (state) {
+        return state.email;
+    },
+    token (state) {
+        return state.idToken;
     },
     isLogged () {
         return state.idToken != null
