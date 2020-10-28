@@ -83,7 +83,7 @@ export default {
             });
         },
         loadData() {
-            this.fetchData();
+            this.fetchData(this.$store.getters.token);
         },
         logout() {
             this.$store.dispatch('logout');
