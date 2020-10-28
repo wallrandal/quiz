@@ -1,7 +1,7 @@
 import axios from 'axios';
 /* eslint no-console: ["error", { allow: ["log"] }] */
 export const loadData = ({commit}) => {
-    axios.get('/data.json')        
+    axios.get('/data.json?auth=' + this.$store.getters.token)        
          .then(response => {
             if(response.data) {
                 const stocks = response.data.stocks;

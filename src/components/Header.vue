@@ -77,7 +77,7 @@ export default {
                 stockPortfolio: this.$store.getters.stockPortfolio,
                 stocks: this.$store.getters.funds,
             }
-            axios.put('/data.json', data)
+            axios.put('/data.json?auth=' + this.$store.getters.token, data)
             .catch(error => {
                 console.log(error)
             });

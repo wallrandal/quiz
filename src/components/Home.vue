@@ -21,15 +21,11 @@ export default {
             return this.$store.getters.isLogged;
         },
         email () {
-            return !this.$store.getters.user ? false : this.$store.getters.user.email;
+            return !this.$store.getters.email ? false : this.$store.getters.email;
         },
         funds() {
             return this.$store.getters.funds;
         }
     },
-    created() {
-        console.log(this.$store.getters.user);
-        // this.$store.dispatch('fetchUser');
-    }
 }
 </script>
