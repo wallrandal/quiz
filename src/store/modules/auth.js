@@ -85,10 +85,12 @@ const actions = {
             return;
         }
 
-        const expirationDate = localStorage.getItem('expirationDate');
+        const expirationDate = new Date(localStorage.getItem('expirationDate'));
 
         const now = new Date();
+        
         if(now >= expirationDate) {
+            console.log('here');
             return;
         }
         const userId = localStorage.getItem('userId');
