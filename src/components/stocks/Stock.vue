@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header bg-success text-white">
                 {{stock.name}}
-                <small>{{stock.price | currency}}</small>
+                <small>{{ priced(stock.price) }}</small>
             </div>
             <div class="card-body">
                 <p class="card-text">
@@ -50,6 +50,9 @@ export default {
             this.$store.dispatch('buyStock', order);
             this.quantity  = 0;
         },
+        priced(value) {
+            return value.toLocaleString('pt-BR',  { style: 'currency', currency: 'BRL' });
+        }
     }
 }
 </script> 

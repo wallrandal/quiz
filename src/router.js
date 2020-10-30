@@ -1,3 +1,4 @@
+import { createWebHistory, createRouter } from "vue-router";
 /* eslint no-console: ["error", { allow: ["log"] }] */
 import Home from "./components/Home";
 // import Header from "./components/Header";
@@ -12,7 +13,7 @@ import Signup from "./components/login/Signup";
 
 import auth from './store/modules/auth';
 
-export const routes = [
+const routes = [
     { path: '/', component: Home },
     { 
         path: '/portfolio', 
@@ -38,3 +39,10 @@ export const routes = [
         component: Signup 
     },
 ];
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes,
+  });
+
+export default router;

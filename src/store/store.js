@@ -1,13 +1,10 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import portfolio from './modules/portfolio'
 import stocks from './modules/stocks'
 import auth from './modules/auth'
-import * as actions from './actions'
+import * as actions from './actions';
+import { createStore } from 'vuex';
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default createStore({
     actions,
     modules: {
         stocks,

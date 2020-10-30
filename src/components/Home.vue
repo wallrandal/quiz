@@ -3,7 +3,7 @@
         <div v-if="logged">
             <h1>Boas vindas, {{email}} </h1>
             <hr>
-            <p>Patrimônio disponível: {{ funds | currency }}</p>
+            <p>Patrimônio disponível: {{ priced(funds) }}</p>
         </div>
         <div v-else>
             <h1>Boas vindas!</h1>
@@ -27,5 +27,10 @@ export default {
             return this.$store.getters.funds;
         }
     },
+    methods: {
+        priced(value) {
+            return value.toLocaleString('pt-BR',  { style: 'currency', currency: 'BRL' });
+        },
+    }
 }
 </script>

@@ -46,7 +46,10 @@
                     <a class="nav-link" @click="logout" > Logout </a>
                 </li>
             </ul>
-            <strong class="navbar-text navbar-right">Patrimônio disponível: {{ funds | currency }}</strong>
+            <strong class="navbar-text navbar-right">
+                Patrimônio disponível: {{priced(funds) }}
+                <!-- {{this.$store.getters.state}} -->
+            </strong>
         </div>
         </nav>
 </template> 
@@ -68,6 +71,9 @@ export default {
             randomizeStocks: 'randomizeStocks',
             fetchData: 'loadData',
         }),
+        priced(value) {
+            return value.toLocaleString('pt-BR',  { style: 'currency', currency: 'BRL' });
+        },
         endDay() {
             this.randomizeStocks()
         },

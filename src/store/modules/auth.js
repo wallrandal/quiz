@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-
-// import router from './../../routes.js';
-
 /* eslint no-console: ["error", { allow: ["log"] }] */
 /*eslint no-unused-vars: ["error", { "args": "none" }]*/
 const state = {
     idToken: null,
     userId: null,
     email: null,
+    count: 1,
 };
 
 const mutations = {
@@ -20,10 +18,13 @@ const mutations = {
     clearAuthData(state) {
         state.idToken = null;
         state.userId = null;
+    },
+    increment() {
+        state.count++;
     }
 };
 
-const actions = {
+const actions = { 
     setLogoutTimer({dispatch}, expirationTime) {
         setTimeout(() => {
             dispatch('logout');
@@ -126,6 +127,9 @@ const actions = {
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
         localStorage.removeItem('email');
+    },
+    increment ({commit}) {
+        commit('increment');
     }
 };
 
@@ -138,6 +142,9 @@ const getters = {
     },
     isLogged () {
         return state.idToken != null
+    },
+    myCounter () {
+        return state.count
     }
 };
 

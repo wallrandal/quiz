@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header bg-info text-white">
                 {{stock.name}}
-                <small>Preço {{stock.price | currency}} | Quantidade {{stock.quantity}}</small>
+                <small>Preço {{priced(stock.price)}} | Quantidade {{stock.quantity}}</small>
             </div>
             <div class="card-body">
                 <p class="card-text">
@@ -45,7 +45,10 @@ export default {
             };
             this.placeSellOrder(order);
             this.quantity = 0;
-        }
+        },
+        priced(value) {
+            return value.toLocaleString('pt-BR',  { style: 'currency', currency: 'BRL' });
+        },
     }
 }
 </script> 

@@ -11,22 +11,23 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.18.1",
     "core-js": "^3.6.5",
-    "vue": "^2.6.12",
+    "vue": "^3.0.0-beta.1",
     "vue-resource": "^1.5.1",
-    "vue-router": "^3.4.8",
-    "vuex": "^3.5.1"
+    "vue-router": "^4.0.0-rc.1",
+    "vuex": "^4.0.0-alpha.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.8",
     "@vue/cli-plugin-eslint": "^4.5.8",
     "@vue/cli-service": "^4.5.8",
+    "@vue/compiler-sfc": "^3.0.0-beta.1",
     "axios": "^0.20.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint-plugin-vue": "^7.0.0-alpha.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.12",
+    "vue-cli-plugin-vue-next": "~0.1.4",
     "webpack": "^4.44.2"
   },
   "eslintConfig": {
@@ -35,7 +36,7 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/vue3-essential",
       "eslint:recommended"
     ],
     "rules": {},
